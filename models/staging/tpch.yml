@@ -1,0 +1,193 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: ""
+    columns:
+      - name: customer_key
+        description: A unique identifier for each customer.
+        data_type: number
+        data_tests:
+          - unique
+          - not_null
+      - name: name
+        description: The full name of the customer.
+        data_tests:
+          - not_null
+      - name: address
+        description: The residential or business address of the customer.
+        data_tests:
+          - not_null
+      - name: nation_key
+        description: A reference key linking the customer to their nation.
+        data_tests:
+          - not_null
+      - name: phone_number
+        description: The contact phone number of the customer.
+        data_tests:
+          - not_null
+      - name: account_balance
+        description: The current balance in the customer's account.
+        data_tests:
+          - not_null
+      - name: market_segment
+        description: The market segment to which the customer belongs.
+        data_tests:
+          - not_null
+      - name: comment
+        description: Additional comments or notes about the customer.
+
+  - name: stg_orders
+    description: ""
+    columns:
+      - name: order_key
+        description: A unique identifier for each order.
+        data_type: number
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_key
+        description: A reference key linking the order to the customer who placed it.
+        data_tests:
+          - not_null
+          - relationships:
+              field: customer_key
+              to: ref('stg_customers')
+      - name: status_code
+        description: The current status of the order, represented by a code.
+        data_tests:
+          - not_null
+      - name: total_price
+        description: The total price of the order.
+        data_tests:
+          - not_null
+      - name: order_date
+        description: The date when the order was placed.
+        data_tests:
+          - not_null
+      - name: clerk_name
+        description: The name of the clerk who handled the order.
+        data_tests:
+          - not_null
+      - name: priority_code
+        description: A code indicating the priority level of the order.
+        data_tests:
+          - not_null
+      - name: ship_priority
+        description: The priority level for shipping the order.
+        data_tests:
+          - not_null
+      - name: comment
+        description: Additional comments or notes about the order.
+
+  - name: stg_line_items
+    description: ""
+    columns:
+      - name: order_key
+        data_type: number
+        description: ""
+      - name: part_key
+      - name: supplier_key
+      - name: line_number
+      - name: quantity
+      - name: gross_item_sales_amount
+      - name: discount_percentage
+      - name: tax_rate
+      - name: return_flag
+      - name: status_code
+      - name: ship_date
+      - name: commit_date
+      - name: receipt_date
+      - name: ship_instructions
+      - name: ship_mode
+      - name: comment
+      - name: base_price
+      - name: discounted_price
+      - name: discounted_item_sales_amount
+      - name: item_discount_amount
+      - name: item_tax_amount
+      - name: net_item_sales_amount
+
+      - name: part_key
+        data_type: number
+        description: ""
+
+      - name: supplier_key
+        data_type: number
+        description: ""
+
+      - name: line_number
+        data_type: number
+        description: ""
+
+      - name: quantity
+        data_type: number
+        description: ""
+
+      - name: gross_item_sales_amount
+        data_type: number
+        description: ""
+
+      - name: discount_percentage
+        data_type: number
+        description: ""
+
+      - name: tax_rate
+        data_type: number
+        description: ""
+
+      - name: return_flag
+        data_type: varchar
+        description: ""
+
+      - name: status_code
+        data_type: varchar
+        description: ""
+
+      - name: ship_date
+        data_type: date
+        description: ""
+
+      - name: commit_date
+        data_type: date
+        description: ""
+
+      - name: receipt_date
+        data_type: date
+        description: ""
+
+      - name: ship_instructions
+        data_type: varchar
+        description: ""
+
+      - name: ship_mode
+        data_type: varchar
+        description: ""
+
+      - name: comment
+        data_type: varchar
+        description: ""
+
+      - name: base_price
+        data_type: number
+        description: ""
+
+      - name: discounted_price
+        data_type: number
+        description: ""
+
+      - name: discounted_item_sales_amount
+        data_type: number
+        description: ""
+
+      - name: item_discount_amount
+        data_type: number
+        description: ""
+
+      - name: item_tax_amount
+        data_type: number
+        description: ""
+
+      - name: net_item_sales_amount
+        data_type: number
+        description: ""
